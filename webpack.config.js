@@ -4,8 +4,8 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isProd = process.env.NODE_ENV === 'production';
-const isDev = !isProd;
+const isProd = process.env.NODE_ENV === 'production'
+const isDev = !isProd
 
 console.log('isProd:', isProd)
 console.log('isDev:', isDev)
