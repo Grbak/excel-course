@@ -3,6 +3,7 @@
 
 @import "header";
 @import "toolbar";
+@import "formula";
 
 $red: blue;
 
@@ -18,4 +19,5 @@ body {
 
 .excel {
     position: relative;
+    color: #888;
 }
