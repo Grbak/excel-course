@@ -6,7 +6,7 @@ export class Table extends ExcelComponent {
         return `
             <div class="row">
             <div class="row-info"></div>
-            <div class="row-data">f
+            <div class="row-data">
                 <div class="column">
                     A
                 </div>
