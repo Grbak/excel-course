@@ -15,15 +15,22 @@ function toColumn(col) {
     return `
         <div class="column">
             ${col}
+            <div class="col-resize"></div>
         </div>
     `
 }
 
 function createRow(index, content) {
+    const resize = index ? '<div class="row-resize"></div>' : ''
     return `
     <div class="row">
-        <div class="row-info">${index ? index : ''}</div>
-        <div class="row-data">${content}</div>
+        <div class="row-info">
+            ${index ? index : ''}
+            ${resize}
+        </div>
+        <div class="row-data">
+            ${content}
+        </div>
     </div>
     `
 }
