@@ -7,7 +7,7 @@ export class Table extends ExcelComponent {
 
     constructor($root) {
         super($root, {
-            listeners: ['mousedown', 'mousemove', 'click']
+            listeners: ['mousedown']
         })
     }
     toHTML() {
@@ -26,8 +26,7 @@ export class Table extends ExcelComponent {
                 const delta = Math.floor(e.pageX - coords.right)
                 const value = coords.width + delta
                 $parent.$el.style.width = value + 'px'
-                const columnName = $parent.$el.innerText
-                document.querySelectorAll(`[data-column="${columnName}"`)
+                document.querySelectorAll(`[data-col="${$parent.data.col}"`)
                     .forEach(el => el.style.width = value + 'px')
             }
 
@@ -35,13 +34,5 @@ export class Table extends ExcelComponent {
                 document.onmousemove = null
             }
         }
-    }
-
-    onMousemove(event) {
-        console.log()
-    }
-
-    onClick(event) {
-        console.log()
     }
 }
