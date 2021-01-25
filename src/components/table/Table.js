@@ -16,7 +16,7 @@ export class Table extends ExcelComponent {
 
     onMousedown(event) {
         if (event.target.dataset.resize) {
-            console.log('Start resizing', event.target.dataset.resize)
+            // console.log('Start resizing', event.target.dataset.resize)
             const $resizer = $(event.target)
             // const $parent = $resizer.$el.parentNode // bad
             // const $parent = $resizer.closest('.column') // still bad
@@ -26,7 +26,9 @@ export class Table extends ExcelComponent {
                 const delta = Math.floor(e.pageX - coords.right)
                 const value = coords.width + delta
                 $parent.$el.style.width = value + 'px'
-                console.log(delta)
+                const columnName = $parent.$el.innerText
+                document.querySelectorAll(`[data-column="${columnName}"`)
+                    .forEach(el => el.style.width = value + 'px')
             }
 
             document.onmouseup = () => {
