@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import {ExcelComponent} from '@core/ExcelComponent'
 import {createTable} from './table.template'
 import {$} from '@core/dom'
@@ -22,12 +23,24 @@ export class Table extends ExcelComponent {
             // const $parent = $resizer.closest('.column') // still bad
             const $parent = $resizer.closest('[data-type="resizable"]')
             const coords = $parent.getCoords()
-            const cells = this.$root.findAll(`[data-col="${$parent.data.col}"`)
-            document.onmousemove = e => {
-                const delta = Math.floor(e.pageX - coords.right)
-                const value = coords.width + delta
-                $parent.$el.style.width = value + 'px'
-                cells.forEach(el => el.style.width = value + 'px')
+            switch ($resizer.data.resize) {
+                case 'column': {
+                    const cells = this.$root.findAll(`[data-col="${$parent.data.col}"`)
+                    document.onmousemove = e => {
+                        const delta = Math.floor(e.pageX - coords.right)
+                        const value = coords.width + delta
+                        $parent.$el.style.width = value + 'px'
+                        cells.forEach(el => el.style.width = value + 'px')
+                    }
+                    break;
+                }
+                case 'row': {
+                    document.onmousemove = e => {
+                        const delta = Math.floor(e.pageY - coords.bottom)
+                        $parent.$el.style.height = coords.height + delta + 'px'
+                    }
+                    break;
+                }
             }
 
             document.onmouseup = () => {
