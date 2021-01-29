@@ -29,7 +29,9 @@ export class Table extends ExcelComponent {
                     document.onmousemove = e => {
                         const delta = Math.floor(e.pageX - coords.right)
                         const value = coords.width + delta
-                        $parent.$el.style.width = value + 'px'
+                        $parent.css({
+                            width: value + 'px'
+                        })
                         cells.forEach(el => el.style.width = value + 'px')
                     }
                     break;
@@ -37,7 +39,9 @@ export class Table extends ExcelComponent {
                 case 'row': {
                     document.onmousemove = e => {
                         const delta = Math.floor(e.pageY - coords.bottom)
-                        $parent.$el.style.height = coords.height + delta + 'px'
+                        $parent.css({
+                            height: coords.height + delta + 'px'
+                        })
                     }
                     break;
                 }
