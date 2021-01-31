@@ -1,8 +1,7 @@
-/* eslint-disable indent */
 import {ExcelComponent} from '@core/ExcelComponent'
 import {createTable} from './table.template'
-// import {$} from '@core/dom'
-import Resize from './Resize'
+import {resizeHandler} from './table.resizeHandler'
+import {shouldResize} from './table.functions'
 
 export class Table extends ExcelComponent {
     static className = 'excel__table'
@@ -17,9 +16,8 @@ export class Table extends ExcelComponent {
     }
 
     onMousedown(event) {
-        if (event.target.dataset.resize) {
-            const resize = new Resize(event, this.$root)
-            resize.resize()
+        if (shouldResize(event)) {
+            resizeHandler(event, this.$root)
         }
     }
 }
