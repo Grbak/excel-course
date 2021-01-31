@@ -18,6 +18,8 @@
 }
 
 .row-info {
+    -moz-user-select: none;
+    -webkit-user-select: none;
     position: relative;
     display: flex;
     justify-content: center;
@@ -33,6 +35,8 @@
 }
 
 .column {
+    -moz-user-select: none;
+    -webkit-user-select: none;
     position: relative;
     display: flex;
     justify-content: center;
@@ -52,8 +56,9 @@
     right: 0;
     background: $primary-color;
     opacity: 0;
+    z-index: 1000;
     &:hover {
-        opacity: 1;
+        opacity: 1 !important;
     }
 }
 
