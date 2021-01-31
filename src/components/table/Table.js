@@ -27,19 +27,21 @@ export class Table extends ExcelComponent {
                 [side]: '-5000px'
             })
             let value;
-            document.onmousemove = e => {
                 if (type === 'column') {
-                    const delta = Math.floor(e.pageX - coords.right)
-                    value = coords.width + delta
-                    $resizer.css({
-                        right: -delta + 'px',
-                    })
+                    document.onmousemove = e => {
+                        const delta = Math.floor(e.pageX - coords.right)
+                        value = coords.width + delta
+                        $resizer.css({
+                            right: -delta + 'px',
+                        })
+                    }
                 } else {
-                    const delta = Math.floor(e.pageY - coords.bottom)
-                    value = coords.height + delta
-                    $resizer.css({
-                        bottom: -delta + 'px',
-                    })
+                    document.onmousemove = e => {
+                        const delta = Math.floor(e.pageY - coords.bottom)
+                        value = coords.height + delta
+                        $resizer.css({
+                            bottom: -delta + 'px',
+                        })
                 }
             }
 
@@ -50,9 +52,6 @@ export class Table extends ExcelComponent {
                     this.$root
                         .findAll(`[data-col="${$parent.data.col}"`)
                         .forEach(el => el.style.width = value + 'px')
-                    $parent.css({
-                        width: value + 'px'
-                    })
                 } else {
                     $parent.css({
                         height: value + 'px'
