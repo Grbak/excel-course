@@ -18,6 +18,9 @@
 }
 
 .row-info {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,6 +35,9 @@
 }
 
 .column {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +48,30 @@
     border-top: none;
     border-left: none;
     height: 100%;
+}
+
+.col-resize, .row-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: $primary-color;
+    opacity: 0;
+    z-index: 1000;
+    &:hover {
+        opacity: 1 !important;
+    }
+}
+
+.col-resize {
+    top: 0;
+    width: 2px;
+    cursor: col-resize;
+}
+
+.row-resize {
+    left: 0;
+    height: 2px;
+    cursor: row-resize;
 }
 
 .cell {
@@ -58,8 +88,7 @@
 
     &.selected {
         border: none;
-        outline: 2px solid #3c74ff;
+        outline: 2px solid $primary-color;
         z-index: 2;
     }
-
 }
