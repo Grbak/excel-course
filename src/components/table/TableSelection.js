@@ -1,13 +1,18 @@
 
 
 export class TableSelection {
-    select(cell) {
-        this.unselect()
-        this.selected = cell
-        cell.classList.add('selected')
+    constructor() {
+        this.group = []
     }
-    unselect() {
-        this.selected && this.selected.classList.remove('selected')
+
+    // $el instanceof DOM === true
+    select($el) {
+        this.group.push($el)
+        $el.addClass('selected')
+    }
+
+    selectGroup() {
+
     }
 }
 

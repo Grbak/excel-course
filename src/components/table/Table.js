@@ -11,10 +11,19 @@ export class Table extends ExcelComponent {
         super($root, {
             listeners: ['mousedown']
         })
-        this.TableSelection = new TableSelection()
     }
     toHTML() {
         return createTable(20)
+    }
+
+    prepare() {
+        this.selection = new TableSelection()
+    }
+
+    init() {
+        super.init()
+        const $cell = this.$root.find('[data-id="0:0"]')
+        this.selection.select($cell)
     }
 
     onMousedown(event) {
@@ -22,7 +31,7 @@ export class Table extends ExcelComponent {
             resizeHandler(event, this.$root)
         }
         if (event.target.className === 'cell') {
-            this.TableSelection.select(event.target)
+            this.selection.select(event.target)
         }
     }
 }
