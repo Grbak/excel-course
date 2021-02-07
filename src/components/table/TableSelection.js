@@ -11,6 +11,11 @@ export class TableSelection {
         $el.addClass('selected')
     }
 
+    unselect() {
+        this.group.forEach($el => $el.removeClass('selected'))
+        this.group = []
+    }
+
     selectGroup() {
 
     }

@@ -3,6 +3,7 @@ import {createTable} from './table.template'
 import {resizeHandler} from './table.resizeHandler'
 import {shouldResize} from './table.functions'
 import {TableSelection} from './TableSelection'
+import {$} from '@core/dom'
 
 export class Table extends ExcelComponent {
     static className = 'excel__table'
@@ -31,7 +32,9 @@ export class Table extends ExcelComponent {
             resizeHandler(event, this.$root)
         }
         if (event.target.className === 'cell') {
-            this.selection.select(event.target)
+            const $cell = $(event.target)
+            this.selection.unselect()
+            this.selection.select($cell)
         }
     }
 }
