@@ -1,7 +1,8 @@
 import {ExcelComponent} from '@core/ExcelComponent'
 import {createTable} from './table.template'
 import {resizeHandler} from './table.resizeHandler'
-import {shouldResize, isCell} from './table.functions'
+import {shouldResize, shouldNavigate, isCell} from './table.functions'
+import {navigation} from './table.navigation';
 import {TableSelection} from './TableSelection'
 import {$} from '@core/dom'
 import {matrix} from '@core/utils'
@@ -11,7 +12,7 @@ export class Table extends ExcelComponent {
 
     constructor($root) {
         super($root, {
-            listeners: ['mousedown']
+            listeners: ['mousedown', 'keydown']
         })
     }
     toHTML() {
@@ -25,6 +26,7 @@ export class Table extends ExcelComponent {
     init() {
         super.init()
         const $cell = this.$root.find('[data-id="0:0"]')
+        $cell.focus()
         this.selection.select($cell)
     }
 
@@ -40,6 +42,13 @@ export class Table extends ExcelComponent {
             } else {
                 this.selection.select($target)
             }
+        }
+    }
+
+    onKeydown(event) {
+        if (shouldNavigate(event)) {
+            const selected = navigation(event.key, this.selection.current, this.$root)
+            this.selection.select(selected)
         }
     }
 }
