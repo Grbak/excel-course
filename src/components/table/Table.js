@@ -1,8 +1,7 @@
 import {ExcelComponent} from '@core/ExcelComponent'
 import {createTable} from './table.template'
 import {resizeHandler} from './table.resizeHandler'
-import {shouldResize, shouldNavigate, isCell} from './table.functions'
-import {navigation} from './table.navigation';
+import {shouldResize, nextSelector, isCell} from './table.functions'
 import {TableSelection} from './TableSelection'
 import {$} from '@core/dom'
 import {matrix} from '@core/utils'
@@ -46,9 +45,19 @@ export class Table extends ExcelComponent {
     }
 
     onKeydown(event) {
-        if (shouldNavigate(event)) {
-            const selected = navigation(event.key, this.selection.current, this.$root)
-            this.selection.select(selected)
+        const keys = [
+            'Enter',
+            'Tab',
+            'ArrowUp',
+            'ArrowRight',
+            'ArrowDown',
+            'ArrowLeft'
+        ]
+        if (keys.includes(event.key) && !event.shiftKey) {
+            event.preventDefault()
+            const id = this.selection.current.id(true)
+            const $next = this.$root.find(nextSelector(event.key, id))
+            $next.$el && this.selection.select($next)
         }
     }
 }

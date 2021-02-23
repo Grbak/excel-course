@@ -13,3 +13,23 @@ export function shouldNavigate(event) {
         || event.key === 'ArrowRight'
         || event.key === 'ArrowLeft'
 }
+
+export function nextSelector(key, {row, col}) {
+    switch (key) {
+    case 'ArrowDown':
+    case 'Enter':
+        row++
+        break
+    case 'ArrowRight':
+    case 'Tab':
+        col++
+        break
+    case 'ArrowUp':
+        row--
+        break
+    case 'ArrowLeft':
+        col--
+        break
+    }
+    return `[data-id="${row}:${col}"]`
+}
