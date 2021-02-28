@@ -13,6 +13,10 @@ class Dom {
         return this.$el.outerHTML.trim()
     }
 
+    text(text) {
+        this.$el.innerText = text
+    }
+
     clear() {
         this.$el.html('')
         return this
