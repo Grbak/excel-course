@@ -14,7 +14,11 @@ class Dom {
     }
 
     text(text) {
-        this.$el.innerText = text
+        if (typeof text === 'string') {
+            this.$el.textContent = text
+            return this
+        }
+        return this.$el.textContent.trim()
     }
 
     clear() {
