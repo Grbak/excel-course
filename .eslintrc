@@ -14,7 +14,8 @@
         "indent": ["error", 4],
         "operator-linebreak": "off",
         "no-debugger": "off",
-        "max-len": ["error", {"code": 100}]
+        "max-len": ["error", {"code": 100}],
+        "no-unused-vars": "off"
     },
     "extends": ["eslint:recommended", "google"]
 }
