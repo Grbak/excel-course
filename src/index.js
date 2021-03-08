@@ -7,7 +7,9 @@ import {Table} from '@/components/table/Table'
 import {Store} from '@core/Store'
 import {rootReducer} from '@core/redux/rootReducer'
 
-const store = new Store(rootReducer)
+const store = new Store(rootReducer, {
+    colState: {},
+})
 
 const excel = new Excel('#app', {
     components: [Header, Toolbar, Formula, Table],
