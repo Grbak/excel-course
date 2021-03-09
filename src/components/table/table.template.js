@@ -1,3 +1,5 @@
+import {storage} from '@core/utils'
+
 const CODES = {
     A: 65,
     Z: 90
@@ -9,6 +11,11 @@ const CODES = {
 //     `
 // }
 
+function getInitStyle(col) {
+    const initWidth = storage('excel-state').colState[col]
+    return initWidth ? `style="width: ${initWidth}px"` : ''
+}
+
 function toCell(row) {
     return function(_, col) {
         return `
@@ -19,6 +26,7 @@ function toCell(row) {
                 data-id="${row}:${col}"
                 data-type="cell"
                 contenteditable
+                ${getInitStyle(col)}
             >
             </div>
         `
@@ -27,7 +35,7 @@ function toCell(row) {
 
 function toColumn(col, index) {
     return `
-        <div class="column" data-type="resizable" data-col="${index}">
+        <div class="column" data-type="resizable" data-col="${index}" ${getInitStyle(index)}>
             ${col}
             <div class="col-resize" data-resize="column"></div>
         </div>
