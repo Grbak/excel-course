@@ -12,7 +12,8 @@ const CODES = {
 // }
 
 function getInitStyle(col) {
-    const initWidth = storage('excel-state').colState[col]
+    // const initWidth = storage('excel-state').colState[col]
+    const initWidth = storage('excel-state') ? storage('excel-state').colState[col] : null
     return initWidth ? `style="width: ${initWidth}px"` : ''
 }
 
